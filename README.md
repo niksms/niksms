@@ -299,7 +299,7 @@ using (StreamReader reader = new StreamReader(stream))
 <p>You can get received SMS to your private line using bellow code.</p>
 
 ```c#
-    public class ReceivedMessage  // You can use this classs to deserilize result
+    public class ReceivedMessage  // You can use this class to deserialize json result
     {
         public string Id { get; set; }
         public string SenderNumber { get; set; }
