@@ -13,10 +13,10 @@ Install-Package Newtonsoft.Json
 <p>Now use bellow libraries in your code:</p>
 
 ```c#
-using System.Text;
+
 using System.Net;
-using System.Collections.Specialized;
 using Newtonsoft.Json;
+using System.IO;
 
 ```
 ## Usage
@@ -25,23 +25,28 @@ using Newtonsoft.Json;
 <p>You can Send Single SMS using bellow Code</p>
 
 ```c#
+string BaseUrl = "http://api.niksms.com/";
 
-string url =  "http://niksms.com/SingleSms";
-using (var client = new WebClient())
+string apiKey = "Your Api Key";
+string message = "Yout Text Message To Send";
+string senderNumber = ""; // Your private line to send SMS Or Niksms public lines
+string mobile = ""; // Reciever phone number
+
+string url = BaseUrl + $"SingleSms?apiKey={apiKey}&senderNumber={senderNumber}&message={message}&mobile={mobile}";
+
+HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+using (Stream stream = response.GetResponseStream())
+using (StreamReader reader = new StreamReader(stream))
 {
-    var values = new NameValueCollection();
-    values["apiKey"] = "Your Api Key";
-    values["message"] = "Yout Text Message To Send";
-    values["senderNumber"] = ""; // Your private line to send SMS Or Niksms public lines
-    values["mobile"] = ""; // Reciever phone number
-	
-    var response = client.UploadValues(url, values);
-	
-    var responseString = Encoding.Default.GetString(response);
-    if(int.Parse(responseString) > 0)
-        Console.WriteLine("SMS Successfully Sent");
+    string result = reader.ReadToEnd();
+    string NikId = JsonConvert.DeserializeObject<string>(result);
+    if(!NikId.Equals("-1"))
+        Console.WriteLine($"Sms has been Sent. NikId is: {NikId}");
     else
-        Console.WriteLine("Can not send Sms");
+        Console.WriteLine($"Error occured.");
 }
 
 ```
