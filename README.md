@@ -24,15 +24,15 @@ using Newtonsoft.Json;
 string url =  "http://niksms.com/api/SingleSms";
 using (var client = new WebClient())
 {
-	var values = new NameValueCollection();
-	values["apiKey"] = "Your Api Key";
-	values["message"] = "Yout Text Message To Send";
-	values["senderNumber"] = ""; // Your private line to send SMS Or Niksms public lines
-	values["mobile"] = ""; // Reciever phone number
+    var values = new NameValueCollection();
+    values["apiKey"] = "Your Api Key";
+    values["message"] = "Yout Text Message To Send";
+    values["senderNumber"] = ""; // Your private line to send SMS Or Niksms public lines
+    values["mobile"] = ""; // Reciever phone number
 	
-	var response = client.UploadValues(url, values);
+    var response = client.UploadValues(url, values);
 	
-	var responseString = Encoding.Default.GetString(response);
+    var responseString = Encoding.Default.GetString(response);
     if(int.parse(responseString) > 0)
         Console.WriteLine("SMS Successfully Sent");
     else
@@ -50,15 +50,15 @@ using (var client = new WebClient())
 string url =  "http://niksms.com/api/GroupSms";
 using (var client = new WebClient())
 {
-	var values = new NameValueCollection();
-	values["apiKey"] = "Your Api Key";
-	values["message"] = "Yout Text Message To Send";
-	values["senderNumber"] = ""; // Your private line to send SMS Or Niksms public lines
-	values["mobiles"] = ""; // Recievers phone number sepereated by , (comma)
+    var values = new NameValueCollection();
+    values["apiKey"] = "Your Api Key";
+    values["message"] = "Yout Text Message To Send";
+    values["senderNumber"] = ""; // Your private line to send SMS Or Niksms public lines
+    values["mobiles"] = ""; // Recievers phone number sepereated by , (comma)
 	
-	var response = client.UploadValues(url, values);
+    var response = client.UploadValues(url, values);
 	
-	var responseString = Encoding.Default.GetString(response);
+    var responseString = Encoding.Default.GetString(response);
     if(int.parse(responseString) > 0)
         Console.WriteLine("SMS Successfully Sent");
     else
@@ -76,15 +76,15 @@ using (var client = new WebClient())
 string url =  "http://niksms.com/api/PtpSms";
 using (var client = new WebClient())
 {
-	var values = new NameValueCollection();
-	values["apiKey"] = "Your Api Key";
-	values["senderNumber"] = ""; // Your private line to send SMS Or Niksms public lines
-	values["mobiles"] = ""; // Recievers phone number sepereated by , (comma)
-	values["messages"] = ""; // Messages sepreated by | (vertical bar)
+    var values = new NameValueCollection();
+    values["apiKey"] = "Your Api Key";
+    values["senderNumber"] = ""; // Your private line to send SMS Or Niksms public lines
+    values["mobiles"] = ""; // Recievers phone number sepereated by , (comma)
+    values["messages"] = ""; // Messages sepreated by | (vertical bar)
 	
-	var response = client.UploadValues(url, values);
+    var response = client.UploadValues(url, values);
 	
-	var responseString = Encoding.Default.GetString(response);
+    var responseString = Encoding.Default.GetString(response);
     if(int.parse(responseString) > 0)
         Console.WriteLine("SMS Successfully Sent");
     else
@@ -102,12 +102,12 @@ using (var client = new WebClient())
 string url =  "http://niksms.com/api/GetSenderNumbers";
 using (var client = new WebClient())
 {
-	var values = new NameValueCollection();
-	values["apiKey"] = "Your Api Key";
+    var values = new NameValueCollection();
+    values["apiKey"] = "Your Api Key";
 	
-	var response = client.UploadValues(url, values);
-	
-	var responseString = Encoding.Default.GetString(response);
+    var response = client.UploadValues(url, values);
+
+    var responseString = Encoding.Default.GetString(response);
     var listOfNumbers = JsonConvert.DeserializeObject<List<string>>(responseString);
 }
 
@@ -121,12 +121,12 @@ using (var client = new WebClient())
 string url =  "http://niksms.com/api/GetCredit";
 using (var client = new WebClient())
 {
-	var values = new NameValueCollection();
-	values["apiKey"] = "Your Api Key";
+    var values = new NameValueCollection();
+    values["apiKey"] = "Your Api Key";
 	
-	var response = client.UploadValues(url, values);
+    var response = client.UploadValues(url, values);
 	
-	var yourCredit = Encoding.Default.GetString(response);
+    var yourCredit = Encoding.Default.GetString(response);
 }
 
 ```
@@ -139,12 +139,12 @@ using (var client = new WebClient())
 string url =  "http://niksms.com/api/GetExpireDate";
 using (var client = new WebClient())
 {
-	var values = new NameValueCollection();
-	values["apiKey"] = "Your Api Key";
+    var values = new NameValueCollection();
+    values["apiKey"] = "Your Api Key";
 	
-	var response = client.UploadValues(url, values);
+    var response = client.UploadValues(url, values);
 	
-	var expireDate = Encoding.Default.GetString(response);
+    var expireDate = Encoding.Default.GetString(response);
 }
 
 ```
@@ -157,12 +157,12 @@ using (var client = new WebClient())
 string url =  "http://niksms.com/api/GetServertime";
 using (var client = new WebClient())
 {
-	var values = new NameValueCollection();
-	values["apiKey"] = "Your Api Key";
+    var values = new NameValueCollection();
+    values["apiKey"] = "Your Api Key";
 	
-	var response = client.UploadValues(url, values);
+    var response = client.UploadValues(url, values);
 	
-	var serverTime = Encoding.Default.GetString(response);
+    var serverTime = Encoding.Default.GetString(response);
 }
 
 ```
@@ -212,17 +212,17 @@ using (var client = new WebClient())
 string url =  "http://niksms.com/api/GetSmsDeliveryWithClientId";
 using (var client = new WebClient())
 {
-	var values = new NameValueCollection();
+    var values = new NameValueCollection();
     
     List<int> yourIds = new List<int>();
     yourIds.Add(); // Add the Id which is related to Sent Sms
 
-	values["apiKey"] = "Your Api Key";
-	values["yourIds"] = yourIds; // Array of ids related to each SMS that you sent. This Ids are numbers which you used in sending SMS.
+    values["apiKey"] = "Your Api Key";
+    values["yourIds"] = yourIds; // Array of ids related to each SMS that you sent. This Ids are numbers which you used in sending SMS.
 
-	var response = client.UploadValues(url, values);
+    var response = client.UploadValues(url, values);
 	
-	var resultString = Encoding.Default.GetString(response);
+    var resultString = Encoding.Default.GetString(response);
     List<string> result = JsonConvert.DeserializeObject<List<string>>(responseString);
     foreach(var item in result) {
         if (result.Equals("3"))
@@ -256,12 +256,12 @@ using (var client = new WebClient())
 string url =  "http://niksms.com/api/GetReceivedSms";
 using (var client = new WebClient())
 {
-	var values = new NameValueCollection();
-	values["apiKey"] = "Your Api Key";
+    var values = new NameValueCollection();
+    values["apiKey"] = "Your Api Key";
 	
-	var response = client.UploadValues(url, values);
+    var response = client.UploadValues(url, values);
 	
-	var responseString = Encoding.Default.GetString(response);
+    var responseString = Encoding.Default.GetString(response);
     var listOfMessages = JsonConvert.DeserializeObject<List<ReceivedMessage>>(responseString);
 
     foreach(var item in listOfMessages){
