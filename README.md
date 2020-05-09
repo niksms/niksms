@@ -5,11 +5,12 @@
 
 ## Installation
 <p>You can download and use our SDK from this <a href='https://niksms.com/'>link</a>. </p>
-<p>If you dont want to use SDK then you should Install Newtonsoft.Json from nuget then Use bellow libraries in your code:</p>
+<p>If you dont want to use SDK then you should Install Newtonsoft.Json from nuget.</p>
 
 ```
 Install-Package Newtonsoft.Json
 ```
+<p>Now use bellow libraries in your code:</p>
 
 ```c#
 using System.Text;
