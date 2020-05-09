@@ -38,7 +38,7 @@ using (var client = new WebClient())
     var response = client.UploadValues(url, values);
 	
     var responseString = Encoding.Default.GetString(response);
-    if(int.parse(responseString) > 0)
+    if(int.Parse(responseString) > 0)
         Console.WriteLine("SMS Successfully Sent");
     else
         Console.WriteLine("Can not send Sms");
@@ -64,7 +64,7 @@ using (var client = new WebClient())
     var response = client.UploadValues(url, values);
 	
     var responseString = Encoding.Default.GetString(response);
-    if(int.parse(responseString) > 0)
+    if(int.Parse(responseString) > 0)
         Console.WriteLine("SMS Successfully Sent");
     else
         Console.WriteLine("Can not send Sms");
@@ -90,7 +90,7 @@ using (var client = new WebClient())
     var response = client.UploadValues(url, values);
 	
     var responseString = Encoding.Default.GetString(response);
-    if(int.parse(responseString) > 0)
+    if(int.Parse(responseString) > 0)
         Console.WriteLine("SMS Successfully Sent");
     else
         Console.WriteLine("Can not send Sms");
