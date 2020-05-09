@@ -26,7 +26,7 @@ using Newtonsoft.Json;
 
 ```c#
 
-string url =  "http://niksms.com/api/SingleSms";
+string url =  "http://niksms.com/SingleSms";
 using (var client = new WebClient())
 {
     var values = new NameValueCollection();
@@ -52,7 +52,7 @@ using (var client = new WebClient())
 
 ```c#
 
-string url =  "http://niksms.com/api/GroupSms";
+string url =  "http://niksms.com/GroupSms";
 using (var client = new WebClient())
 {
     var values = new NameValueCollection();
@@ -78,7 +78,7 @@ using (var client = new WebClient())
 
 ```c#
 
-string url =  "http://niksms.com/api/PtpSms";
+string url =  "http://niksms.com/PtpSms";
 using (var client = new WebClient())
 {
     var values = new NameValueCollection();
@@ -104,7 +104,7 @@ using (var client = new WebClient())
 
 ```c#
 
-string url =  "http://niksms.com/api/GetSenderNumbers";
+string url =  "http://niksms.com/GetSenderNumbers";
 using (var client = new WebClient())
 {
     var values = new NameValueCollection();
@@ -123,7 +123,7 @@ using (var client = new WebClient())
 
 ```c#
 
-string url =  "http://niksms.com/api/GetCredit";
+string url =  "http://niksms.com/GetCredit";
 using (var client = new WebClient())
 {
     var values = new NameValueCollection();
@@ -141,7 +141,7 @@ using (var client = new WebClient())
 
 ```c#
 
-string url =  "http://niksms.com/api/GetExpireDate";
+string url =  "http://niksms.com/GetExpireDate";
 using (var client = new WebClient())
 {
     var values = new NameValueCollection();
@@ -159,7 +159,7 @@ using (var client = new WebClient())
 
 ```c#
 
-string url =  "http://niksms.com/api/GetServertime";
+string url =  "http://niksms.com/GetServertime";
 using (var client = new WebClient())
 {
     var values = new NameValueCollection();
@@ -178,7 +178,7 @@ using (var client = new WebClient())
 
 ```c#
 
-string url =  "http://niksms.com/api/GetSmsDelivery";
+string url =  "http://niksms.com/GetSmsDelivery";
 using (var client = new WebClient())
 {
     var values = new NameValueCollection();
@@ -214,7 +214,7 @@ using (var client = new WebClient())
 
 ```c#
 
-string url =  "http://niksms.com/api/GetSmsDeliveryWithClientId";
+string url =  "http://niksms.com/GetSmsDeliveryWithClientId";
 using (var client = new WebClient())
 {
     var values = new NameValueCollection();
@@ -258,7 +258,7 @@ using (var client = new WebClient())
 
 ```c#
 
-string url =  "http://niksms.com/api/GetReceivedSms";
+string url =  "http://niksms.com/GetReceivedSms";
 using (var client = new WebClient())
 {
     var values = new NameValueCollection();
