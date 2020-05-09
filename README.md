@@ -176,17 +176,17 @@ using (var client = new WebClient())
 string url =  "http://niksms.com/api/GetSmsDelivery";
 using (var client = new WebClient())
 {
-	var values = new NameValueCollection();
+    var values = new NameValueCollection();
     
     List<int> nikIds = new List<int>();
     nikIds.Add(); // Add the Id which is related to Sent Sms
 
-	values["apiKey"] = "Your Api Key";
-	values["nikIds"] = nikIds; // Array of ids related to each SMS that you sent. This Ids has been sent to you as response of sendSingle or group SMS
+    values["apiKey"] = "Your Api Key";
+    values["nikIds"] = nikIds; // Array of ids related to each SMS that you sent. This Ids has been sent to you as response of sendSingle or group SMS
 
-	var response = client.UploadValues(url, values);
+    var response = client.UploadValues(url, values);
 	
-	var resultString = Encoding.Default.GetString(response);
+    var resultString = Encoding.Default.GetString(response);
     List<string> result = JsonConvert.DeserializeObject<List<string>>(responseString);
     foreach(var item in result) {
         if (result.Equals("3"))
