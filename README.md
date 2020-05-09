@@ -17,7 +17,7 @@ using Newtonsoft.Json;
 ## Usage
 
 ### Send Single SMS
-<p>You can Send Single SMS using below Code</p>
+<p>You can Send Single SMS using bellow Code</p>
 
 ```c#
 
@@ -43,7 +43,7 @@ using (var client = new WebClient())
 
 
 ### Send Bulk SMS
-<p>You can Send Bulk Sms using below Code</p>
+<p>You can Send Bulk Sms using bellow Code</p>
 
 ```c#
 
@@ -97,155 +97,179 @@ using (var client = new WebClient())
 ### Get Sender Numbers
 <p>If you want to get the list of your private numbers that you use for sending SMS, you can use GetSenderNumbers method.</p>
 
-```python
-import requests 
+```c#
 
-URL = "http://niksms.com/api/GetSenderNumbers"
-
-apiKey = "Your ApiKey"
-
-PARAMS = {'apiKey': apiKey } 
-
-r = requests.get(url = URL, params = PARAMS) 
-listOfNumbers = r.json() 
-
-
+string url =  "http://niksms.com/api/GetSenderNumbers";
+using (var client = new WebClient())
+{
+	var values = new NameValueCollection();
+	values["apiKey"] = "Your Api Key";
+	
+	var response = client.UploadValues(url, values);
+	
+	var responseString = Encoding.Default.GetString(response);
+    var listOfNumbers = JsonConvert.DeserializeObject<List<string>>(responseString);
+}
 
 ```
 
 ### Get Credit
-<p>You can get you credit balance with below code.</p>
+<p>You can get you credit balance with bellow code.</p>
 
-```python
-import requests 
+```c#
 
-URL = "http://niksms.com/api/GetCredit"
-
-apiKey = "Your ApiKey"
-
-PARAMS = {'apiKey': apiKey } 
-
-r = requests.get(url = URL, params = PARAMS) 
-yourBalance = r.json() 
-
-
+string url =  "http://niksms.com/api/GetCredit";
+using (var client = new WebClient())
+{
+	var values = new NameValueCollection();
+	values["apiKey"] = "Your Api Key";
+	
+	var response = client.UploadValues(url, values);
+	
+	var yourCredit = Encoding.Default.GetString(response);
+}
 
 ```
 
 ### Get Expire Date
-<p>You can get your account expiration date with below code.</p>
+<p>You can get your account expiration date with bellow code.</p>
 
-```python
-import requests 
+```c#
 
-URL = "http://niksms.com/api/GetExpireDate"
-
-apiKey = "Your ApiKey"
-
-PARAMS = {'apiKey': apiKey } 
-
-r = requests.get(url = URL, params = PARAMS) 
-expireDate = r.json() 
-
-
+string url =  "http://niksms.com/api/GetExpireDate";
+using (var client = new WebClient())
+{
+	var values = new NameValueCollection();
+	values["apiKey"] = "Your Api Key";
+	
+	var response = client.UploadValues(url, values);
+	
+	var expireDate = Encoding.Default.GetString(response);
+}
 
 ```
 
-
 ### Get Server time
-<p>You can get nik SMS server time using below code.</p>
+<p>You can get nik SMS server time using bellow code.</p>
 
-```python
-import requests 
+```c#
 
-URL = "http://niksms.com/api/GetServertime"
-
-apiKey = "Your ApiKey"
-
-PARAMS = {'apiKey': apiKey } 
-
-r = requests.get(url = URL, params = PARAMS) 
-serverTime = r.json() 
-
-
+string url =  "http://niksms.com/api/GetServertime";
+using (var client = new WebClient())
+{
+	var values = new NameValueCollection();
+	values["apiKey"] = "Your Api Key";
+	
+	var response = client.UploadValues(url, values);
+	
+	var serverTime = Encoding.Default.GetString(response);
+}
 
 ```
 
 
 ### Get SMS Delivery
-<p>You can get results of sent messages using below code.</p>
+<p>You can get results of sent messages using bellow code.</p>
 
-```python
-import requests 
+```c#
 
-URL = "http://niksms.com/api/GetSmsDelivery"
+string url =  "http://niksms.com/api/GetSmsDelivery";
+using (var client = new WebClient())
+{
+	var values = new NameValueCollection();
+    
+    List<int> nikIds = new List<int>();
+    nikIds.Add(); // Add the Id which is related to Sent Sms
 
-apiKey = "Your ApiKey"
-nikIds = [] # Array of ids related to each SMS that you sent. This Ids has been sent to you as response of sendSingle or group SMS
+	values["apiKey"] = "Your Api Key";
+	values["nikIds"] = nikIds; // Array of ids related to each SMS that you sent. This Ids has been sent to you as response of sendSingle or group SMS
 
-PARAMS = {'apiKey': apiKey , 'nikIds':nikIds } 
+	var response = client.UploadValues(url, values);
+	
+	var resultString = Encoding.Default.GetString(response);
+    List<string> result = JsonConvert.DeserializeObject<List<string>>(responseString);
+    foreach(var item in result) {
+        if (result.Equals("3"))
+            Console.WriteLine('sent successfully');
+        else 
+        if(result.Equals("2") || result.Equals("3"))
+            Console.WriteLine("waiting to be sent");
+        else
+            Console.WriteLine('message not sent')
+        }
+    }
+}
 
-r = requests.get(url = URL, params = PARAMS) 
-arrayOfResult = r.json() 
-
-for result in arrayOfResult:
-    if result == '3'
-        print('sent successfully')
-    else if result == '2' || result == '1'
-        print('waiting to be sent')
-    else
-        print('message not sent')
 
 ```
 
 
 ### Get SMS Delivery With ClientId
-<p>You can get results of sent messages with ids which you used before, using below code.</p>
+<p>You can get results of sent messages with ids which you used before, using bellow code.</p>
 
-```python
-import requests 
+```c#
 
-URL = "http://niksms.com/api/GetSmsDeliveryWithClientId"
+string url =  "http://niksms.com/api/GetSmsDeliveryWithClientId";
+using (var client = new WebClient())
+{
+	var values = new NameValueCollection();
+    
+    List<int> yourIds = new List<int>();
+    yourIds.Add(); // Add the Id which is related to Sent Sms
 
-apiKey = "Your ApiKey"
-yourId = [] # Array of ids related to each SMS that you sent. This Ids are numbers which you used in sending SMS.
+	values["apiKey"] = "Your Api Key";
+	values["yourIds"] = yourIds; // Array of ids related to each SMS that you sent. This Ids are numbers which you used in sending SMS.
 
-PARAMS = {'apiKey': apiKey , 'yourId':yourId } 
-
-r = requests.get(url = URL, params = PARAMS) 
-arrayOfResult = r.json() 
-
-for result in arrayOfResult:
-    if result == '3'
-        print('sent successfully')
-    else if result == '2' or result == '1'
-        print('waiting to be sent')
-    else
-        print('message not sent')
-
+	var response = client.UploadValues(url, values);
+	
+	var resultString = Encoding.Default.GetString(response);
+    List<string> result = JsonConvert.DeserializeObject<List<string>>(responseString);
+    foreach(var item in result) {
+        if (result.Equals("3"))
+            Console.WriteLine('sent successfully');
+        else 
+        if(result.Equals("2") || result.Equals("3"))
+            Console.WriteLine("waiting to be sent");
+        else
+            Console.WriteLine('message not sent')
+        }
+    }
+}
 
 ```
 
 
 ### Get Received Sms
-<p>You can get received SMS to your private line using below code.</p>
+<p>You can get received SMS to your private line using bellow code.</p>
 
-```python
-import requests 
+```c#
+    public class ReceivedMessage  // You can use this classs to deserilize result
+    {
+        public string SenderNumber{ get; set;}
+        public string Message{ get; set;}
+        public string ReceiveDate{ get; set;}
+    }
+```
 
-URL = "http://niksms.com/api/GetReceivedSms"
+```c#
 
-apiKey = "Your ApiKey"
+string url =  "http://niksms.com/api/GetReceivedSms";
+using (var client = new WebClient())
+{
+	var values = new NameValueCollection();
+	values["apiKey"] = "Your Api Key";
+	
+	var response = client.UploadValues(url, values);
+	
+	var responseString = Encoding.Default.GetString(response);
+    var listOfMessages = JsonConvert.DeserializeObject<List<ReceivedMessage>>(responseString);
 
-PARAMS = {'apiKey': apiKey } 
-
-r = requests.get(url = URL, params = PARAMS) 
-arrayOfResult = r.json() 
-
-for result in arrayOfResult:
-    print('sender number is: ' + result.SenderNumber)
-    print('message is : ' + result.Message)
-    print('receive time is ' + result.ReceiveDate)
+    foreach(var item in listOfMessages){
+        Console.WriteLine($"Sender number is {item.SenderNumber}");
+        Console.WriteLine($"Message is {item.Message}");
+        Console.WriteLine($"Receive time is {item.ReceiveDate}");
+    }
+}
 
 ```
 
@@ -256,7 +280,7 @@ for result in arrayOfResult:
 
 <div dir='rtl'>
 
-# راهنمای زبان برنامه نویسی Python
+# راهنمای زبان برنامه نویسی Asp.Net
 
 ### معرفی سرویس پیامکی نیک اس ام اس
 <p>شما می توانید با استفاده از سرویس ارسال پیامک <a target='_blank' href='https://niksms.com'>نیک اس ام اس</a> به راحتی پیامک های خود را ارسال نمایید.</p>
